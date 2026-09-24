@@ -1,4 +1,7 @@
 streamlit
 google-generativeai
 google-api-python-client
+google-auth-oauthlib
 Pillow
+streamlit-oauth
+requests
