@@ -32,7 +32,7 @@ if not st.session_state['token']:
     result = oauth2.authorize_button(
         name="Sign in with Google / YouTube",
         icon="https://www.google.com/favicon.ico",
-        redirect_uri="https://youtube-ai-analyzer-bnxjdgxwcb77aey6mvyzvw.streamlit.app",
+        redirect_uri="https://youtube-ai-analyzer-bnxjdgxwcb77aey6mvyzvw.streamlit.app/",
         scope=SCOPE,
         key="google_auth"
     )
