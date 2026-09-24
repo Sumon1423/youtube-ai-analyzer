@@ -15,7 +15,7 @@ if not gemini_api_key or not youtube_api_key:
 else:
     genai.configure(api_key=gemini_api_key)
     # আপডেটেড মডেল নেম
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-3.6-flash')
 
     tab1, tab2 = st.tabs(["🖼️ থাম্বনেইল এনালাইসিস", "📊 ভিডিও অডিট"])
 
