@@ -14,7 +14,8 @@ if not gemini_api_key or not youtube_api_key:
     st.warning("⚠️ সাইডবারে আপনার Gemini এবং YouTube API Key দিন।")
 else:
     genai.configure(api_key=gemini_api_key)
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    # আপডেটেড মডেল নেম
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     tab1, tab2 = st.tabs(["🖼️ থাম্বনেইল এনালাইসিস", "📊 ভিডিও অডিট"])
 
@@ -26,9 +27,13 @@ else:
             st.image(image, caption="Uploaded Thumbnail", use_container_width=True)
             if st.button("এনালাইজ করুন"):
                 with st.spinner("AI থাম্বনেইল বিশ্লেষণ করছে..."):
-                    prompt = "তুমি একজন ইউটিউব থাম্বনেইল এক্সপার্ট। এই থাম্বনেইলটির প্লাস পয়েন্ট, সমস্যা এবং ভিউ বাড়ানোর উপায় বাংলা ভাষায় বিস্তারিত বলো।"
-                    response = model.generate_content([prompt, image])
-                    st.markdown(response.text)
+                    try:
+                        prompt = "তুমি একজন প্রফেশনাল ইউটিউব থাম্বনেইল এবং CTR এক্সপার্ট। এই থাম্বনেইলটি গভীরভাবে বিশ্লেষণ করো এবং বাংলা ভাষায় উত্তর দাও: ১. থাম্বনেইলের প্লাস পয়েন্ট ২. সমস্যা বা দুর্বলতা ৩. ভিউ বাড়ানোর জন্য প্রয়োজনীয় পরিবর্তন।"
+                        response = model.generate_content([prompt, image])
+                        st.success("বিশ্লেষণ সম্পন্ন হয়েছে!")
+                        st.markdown(response.text)
+                    except Exception as e:
+                        st.error(f"Gemini API Error: {str(e)}")
 
     with tab2:
         st.subheader("ভিডিও Performance & SEO Audit")
